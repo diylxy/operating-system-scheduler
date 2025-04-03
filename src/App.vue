@@ -1,4 +1,5 @@
 <template>
+    <github-corners fixed target="__blank" href="https://github.com/uivjs/vue-github-corners" />
     <div class="d-flex" style="margin: 24px; justify-content: center; gap: 24px;">
         <div>
             <h1 style="text-align: center;">操作系统 · 调度模拟器</h1>
