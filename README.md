@@ -1,33 +1,31 @@
-# scheduler
+# 操作系统进程/线程调度算法模拟器
 
-This template should help get you started developing with Vue 3 in Vite.
+## 支持的调度算法：
+- 先来先服务 (FCFS)  
+- 高响应比优先 (HRN)  
+- 最短作业优先 (SJF)  
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 题目
+### 一、    实验要求  
+1．用编程工具编制程序，在机器上调试运行。  
+2．要求将功能集中在一个界面中,界面设计美观，功能完整，使用方便。  
+### 二、  设计题目  
+题目1  进程调度模拟程序  
+#### 目的：  
+熟悉进程调度算法及其实现  
+#### 内容：  
+编写一个程序完成多道程序的调度  
+#### 要求：  
+只考虑1个CPU的资源，其他资源不考虑  
+使用响应比高者优先算法  
+程序采用键盘输入，输入格式为：  
 
-## Type Support for `.vue` Imports in TS
+K
+   TJ1    YS1
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+   ……
 
-## Customize configuration
+   TJK    YSK
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+其中K是作业数（>0），TJi提交时间，YSi （i=1~K）是作业预计的运行时间（以分钟计）TJ的输入格式是XXYY，其中XX是时，YY是分，如10点28分，输入为1028。但内部计算要以60进制来算。要求输出按照作业调度的先后次序输出结果，每行为一个作业状态，从左到右分别是调度次序，作业号，调度时间，周转时间和带权周转时间,最后一行输出两个数，第一为平均周转时间，第二为平均带权周转时间。  
