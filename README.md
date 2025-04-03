@@ -1,4 +1,5 @@
 # 操作系统进程/线程调度算法模拟器
+![image](https://github.com/user-attachments/assets/3c48cd63-43cd-4557-befa-cd50d4edaec4)
 
 ## 支持的调度算法：
 - 先来先服务 (FCFS)  
