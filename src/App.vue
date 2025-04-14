@@ -36,19 +36,19 @@
                     </v-toolbar>
                     <v-card-text>
                         <div>
-                            <h3 class="text-center text-h6">最大需求 Max</h3>
-                            <div class="d-flex justify-center ga-2">
-                                <v-text-field label="" variant="outlined" style="max-width: 60px;"
-                                    v-for="(idx, index) in Array(resourceCount).fill(0)" :key="index"
-                                    v-model="inputResMax[index]" type="number" hide-spin-buttons></v-text-field>
-                            </div>
-                        </div>
-                        <div>
                             <h3 class="text-center text-h6">已分配资源 Allocation</h3>
                             <div class="d-flex justify-center ga-2">
                                 <v-text-field variant="outlined" style="max-width: 60px"
                                     v-for="(idx, index) in Array(resourceCount).fill(0)" :key="index"
                                     v-model="inputRes[index]" type="number" hide-spin-buttons></v-text-field>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-center text-h6">最大需求 Max</h3>
+                            <div class="d-flex justify-center ga-2">
+                                <v-text-field label="" variant="outlined" style="max-width: 60px;"
+                                    v-for="(idx, index) in Array(resourceCount).fill(0)" :key="index"
+                                    v-model="inputResMax[index]" type="number" hide-spin-buttons></v-text-field>
                             </div>
                         </div>
                     </v-card-text>
@@ -62,8 +62,8 @@
                                 <v-btn icon="mdi-delete" @click="deleteTask(task.id)"></v-btn>
                             </template>
                             <template v-slot:subtitle>
-                                <div>最大需求: {{ task.resMax.slice(0, resourceCount) }}</div>
                                 <div>当前分配: {{ task.res.slice(0, resourceCount) }}</div>
+                                <div>最大需求: {{ task.resMax.slice(0, resourceCount) }}</div>
                             </template>
                         </v-card>
                     </div>
@@ -94,6 +94,30 @@
                 </v-card>
             </div>
             <div class="d-flex justify-center ga-2 mb-2 flex-column">
+                <div key="card2">
+                    <v-card width="320px" :hover="true">
+                        <v-toolbar dense flat>
+                            <v-toolbar-title>
+                                <span class="text-subheading">已分配资源 Allocation</span>
+                            </v-toolbar-title>
+                        </v-toolbar>
+                        <v-card-text>
+                            <v-table density="compact">
+                                <tbody>
+                                    <TransitionGroup name="slide">
+                                        <tr v-for="task in tasksList" :key="task.id">
+                                            <td><strong>任务 {{ task.id }}</strong></td>
+                                            <td v-for="(value, index) in task.res.slice(0, resourceCount)" :key="index">
+                                                {{
+                                                    value }}
+                                            </td>
+                                        </tr>
+                                    </TransitionGroup>
+                                </tbody>
+                            </v-table>
+                        </v-card-text>
+                    </v-card>
+                </div>
                 <div key="card1">
                     <v-card width="320px" :hover="true">
                         <v-toolbar dense flat>
@@ -119,34 +143,10 @@
                         </v-card-text>
                     </v-card>
                 </div>
-                <div key="card2">
-                    <v-card width="320px" :hover="true">
-                        <v-toolbar dense flat>
-                            <v-toolbar-title>
-                                <span class="text-subheading">已分配资源 Allocation</span>
-                            </v-toolbar-title>
-                        </v-toolbar>
-                        <v-card-text>
-                            <v-table density="compact">
-                                <tbody>
-                                    <TransitionGroup name="slide">
-                                        <tr v-for="task in tasksList" :key="task.id">
-                                            <td><strong>任务 {{ task.id }}</strong></td>
-                                            <td v-for="(value, index) in task.res.slice(0, resourceCount)" :key="index">
-                                                {{
-                                                    value }}
-                                            </td>
-                                        </tr>
-                                    </TransitionGroup>
-                                </tbody>
-                            </v-table>
-                        </v-card-text>
-                    </v-card>
-                </div>
                 <div>
                     <div class="d-flex flex-column ga-1">
                         <TransitionGroup name="slide">
-                            <div v-for="(scheme, index) in schemesDisplay" :key="index">
+                            <div v-for="(scheme, index) in schemesDisplay" :key="scheme.toString()">
                                 <v-card class="d-flex" max-width="400" :hover="true">
                                     <v-card class="ma-1 pa-1 px-2" v-for="task in scheme" :key="task"
                                         :color="Utils.getColor(task)">
@@ -249,6 +249,7 @@ function doSchedule() {
     if (tasksList.value.length == 0) {
         isSafe.value = true;
         schemesDisplay.value = [];
+        schemeCount.value = 0;
         return;
     }
     let results = BruteForceBanker.dfs(tasksList.value, OSRes.value, resourceCount.value);
@@ -256,6 +257,7 @@ function doSchedule() {
         isSafe.value = false;
         schemes.value = [];
         schemesDisplay.value = [];
+        schemeCount.value = 0;
     } else {
         isSafe.value = true;
         schemes.value = results.map((item) => {
