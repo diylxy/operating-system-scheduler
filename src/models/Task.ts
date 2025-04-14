@@ -1,16 +1,7 @@
-
 type Task = {
-    id: number;
-    enter: number;
-    duration: number;
-};
-type ScheduledTask = {
-    id: number;
-    enter: number;
-    duration: number;
-    schInfo: {
-        start: number;
-    }
+    id: number; // 表示对象的唯一标识符
+    res: number[]; // 表示一个数字数组
+    resMax: number[]; // 表示另一个数字数组
 };
 
-export type { Task, ScheduledTask };
+export type { Task };
