@@ -3,6 +3,9 @@
     <div class="d-flex" style="margin: 24px; justify-content: center; gap: 24px;">
         <div>
             <h1 style="text-align: center;">操作系统 · 银行家算法</h1>
+            <h5 style="text-align: center;">注: 使用vite-plugin-singlefile插件构建</h5>
+            <h5 style="text-align: center;">如需查看源代码请点击右上角</h5>
+            <h5 style="text-align: center;">图标字体使用CDN，需要网络</h5>
             <div style="height: 24px;"></div>
             <div class="d-flex flex-column" style="gap: 8px;">
                 <v-card class="mx-auto" :hover="true" min-width="400">
