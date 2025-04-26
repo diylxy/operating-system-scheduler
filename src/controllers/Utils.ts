@@ -1,3 +1,5 @@
+import Color from "vuetify/directives/color";
+
 var colors = [
     "red",
     "pink",
@@ -20,6 +22,7 @@ var colors = [
 ];
 
 function getColor(id: number) {
+    if (id < 0) return "white";
     return colors[id % colors.length] + "-lighten-1";
 }
 
