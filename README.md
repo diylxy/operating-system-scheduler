@@ -1,4 +1,5 @@
 # 操作系统页面置换算法模拟器
+![image](https://github.com/user-attachments/assets/59192b9f-89c4-4186-8212-4067233bf2ad)
 
 ## 支持的调度算法：
 - 先进先出 (FIFO)  
